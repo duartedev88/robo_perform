@@ -36,7 +36,7 @@ class OpenAIService
         }
 
         // Monta prompt para IA
-        $userPrompt = "Crie uma legenda envolvente para Instagram sobre o produto \"$productName\". "
+        $userPrompt = "Crie uma legenda envolvente para Instagram sobre o produto \"$productName\". com no máximo 250 caracteres"
             . ($description ? "Descrição: $description. " : '')
             . ($priceFormatted ? "$priceFormatted. " : '')
             . "Use linguagem criativa, amigável e incentive o cliente a comprar.";
@@ -44,7 +44,7 @@ class OpenAIService
         $messages = [
             [
                 'role' => 'system',
-                'content' => 'Você é um redator criativo que cria legendas envolventes para posts de Instagram sobre produtos.'
+                'content' => 'Você é um redator criativo que cria legendas envolventes para posts de Instagram sobre produtos. Utilize poucos emogis'
             ],
             [
                 'role' => 'user',

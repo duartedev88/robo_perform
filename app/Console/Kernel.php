@@ -10,7 +10,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // Agenda a execução do comando todos os dias às 10h
-        $schedule->command('instagram:post')->dailyAt('10:00');
+       // $schedule->command('instagram:post')->dailyAt('10:00');
+        $schedule->command('instagram:post')->everyMinute(); //test
+
     }
 
     protected function commands(): void

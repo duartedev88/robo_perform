@@ -57,14 +57,7 @@ class ScheduledPostController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'product_name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image_url' => 'required|url',
-            'caption' => 'required|string',
-            'price' => 'nullable|numeric',
-        ]);
-
+        $data = $this->validateScheduledPost($request, false);
         ScheduledPost::create($data);
 
         return redirect()->route('admin.scheduled-posts.index')->with('success', 'Post agendado com sucesso.');
@@ -77,15 +70,7 @@ class ScheduledPostController extends Controller
 
     public function update(Request $request, ScheduledPost $scheduledPost)
     {
-        $data = $request->validate([
-            'product_name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image_url' => 'required|url',
-            'caption' => 'required|string',
-            'price' => 'nullable|numeric',
-            'posted' => 'boolean',
-        ]);
-
+        $data = $this->validateScheduledPost($request, true);
         $scheduledPost->update($data);
 
         return redirect()->route('admin.scheduled-posts.index')->with('success', 'Post atualizado com sucesso.');
@@ -101,7 +86,9 @@ class ScheduledPostController extends Controller
 
         if ($result && isset($result['id'])) {
             $scheduledPost->posted = true;
+            $scheduledPost->posted_at = now();
             $scheduledPost->save();
+
             return back()->with('success', 'Post publicado manualmente!');
         }
 
@@ -112,5 +99,19 @@ class ScheduledPostController extends Controller
     {
         $scheduledPost->delete();
         return redirect()->route('admin.scheduled-posts.index')->with('success', 'Post excluído.');
+    }
+
+    private function validateScheduledPost(Request $request, bool $isUpdate = false): array
+    {
+        return $request->validate([
+            'product_name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image_url' => 'required|url',
+            'caption' => 'required|string',
+            'scheduled_at' => $isUpdate ? 'nullable|date' : 'required|date',
+            'price' => 'nullable|numeric',
+            'posted' => 'boolean',
+            'posted_at' => 'nullable|date',
+        ]);
     }
 }

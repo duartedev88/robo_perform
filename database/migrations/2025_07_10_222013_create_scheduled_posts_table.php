@@ -18,8 +18,10 @@ return new class extends Migration
             $table->text('description');
             $table->string('image_url');
             $table->text('caption');
+            $table->timestamp('scheduled_at')->nullable();
             $table->decimal('price', 10, 2)->nullable(); // ✅ ESSA LINHA
             $table->boolean('posted')->default(false);
+            $table->timestamp('posted_at')->nullable();
             $table->timestamps();
         });
     }

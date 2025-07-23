@@ -4,6 +4,7 @@
 
 @section('content')
     <a href="{{ route('admin.scheduled-posts.create') }}" class="bg-[#2e2d87] text-white px-4 py-2 rounded">Novo Post</a>
+
     <form method="GET" class="mb-4 pt-10 flex flex-wrap gap-2 items-center">
         <input type="text" name="product_name" placeholder="Buscar produto por nome..."
                value="{{ request('product_name') }}"
@@ -48,26 +49,32 @@
                     @endif
                 </td>
                 <td class="p-2 text-center text-gray-700">
-                    {{ $post->product_id ?? '-' }}
+                    {{ $post->product_id ?? '—' }}
                 </td>
-                <td class="p-2">
+                <td class="p-2 text-center">
                     @if($post->posted)
-                        <span class="text-green-600 font-semibold">Postado</span>
+                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">Postado</span>
                     @else
-                        <span class="text-yellow-600 font-semibold">Pendente</span>
+                        <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-semibold">Pendente</span>
                     @endif
                 </td>
                 <td class="p-2 space-x-2">
-                    <a href="{{ route('admin.scheduled-posts.edit', $post) }}" class="text-blue-500">Editar</a>
+                    <a href="{{ route('admin.scheduled-posts.edit', $post) }}" class="text-blue-600 text-xs font-medium">Editar</a>
                     <form method="POST" action="{{ route('admin.scheduled-posts.destroy', $post) }}" class="inline">
                         @csrf @method('DELETE')
-                        <button class="text-red-500" onclick="return confirm('Excluir?')">Excluir</button>
+                        <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs"
+                                onclick="return confirm('Excluir este post?')">
+                            Excluir
+                        </button>
                     </form>
                 </td>
                 <td class="p-2">
                     <form method="POST" action="{{ route('admin.scheduled-posts.post-now', $post) }}" class="inline">
                         @csrf
-                        <button class="text-green-600" onclick="return confirm('Postar agora?')">Postar Agora</button>
+                        <button class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-xs"
+                                onclick="return confirm('Postar agora?')">
+                            Postar Agora
+                        </button>
                     </form>
                 </td>
             </tr>

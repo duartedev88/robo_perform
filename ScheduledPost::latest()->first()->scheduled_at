@@ -1,0 +1,21 @@
+[90m= [39m[
+    "[34mid[39m" => [35m3[39m,
+    "[34mproduct_id[39m" => [35m324141420[39m,
+    "[34mproduct_name[39m" => "[32mFonte Cooler Master MWE V2 700W, 80 Plus Bronze, PFC Ativo, MPE-7001-ACAAB-WO[39m",
+    "[34mdescription[39m" => "[32mConheça o produto: Fonte Cooler Master MWE V2 700W, 80 Plus Bronze, PFC Ativo, MPE-7001-ACAAB-WO. Ideal para quem busca qualidade e performance.[39m",
+    "[34mimage_url[39m" => "[32mhttps://cdn.awsli.com.br/763/763482/produto/324141420/fonte-cooler-master-mwe-v2-700w-80-plus-bronze-pfc-ativo-mpe-7001-acaab-br_10482-6fnmho1v0q.png[39m",
+    "[34mcaption[39m" => """
+      [32m💡✨ Dê um UP na sua máquina com a Fonte Cooler Master MWE V2 700W! 💪🔥[39m\n
+      \n
+      [32mSe você busca qualidade e performance, essa belezinha é tudo o que você precisa! Com certificação 80 Plus Bronze e PFC ativo, ela garante eficiência e potência na medida certa para os seus jogos e projetos! 🎮💻[39m\n
+      \n
+      [32mPor apenas R$ 549,00, você transforma sua experiência em algo épico! 🚀 Não fique na[39m
+      """,
+    "[34mscheduled_at[39m" => [36mnull[39m,
+    "[34mprice[39m" => "[32m549.00[39m",
+    "[34mposted[39m" => [36mfalse[39m,
+    "[34mposted_at[39m" => [36mnull[39m,
+    "[34mcreated_at[39m" => "[32m2025-07-22T19:03:12.000000Z[39m",
+    "[34mupdated_at[39m" => "[32m2025-07-22T19:03:12.000000Z[39m",
+  ]
+

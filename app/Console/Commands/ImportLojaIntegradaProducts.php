@@ -65,7 +65,11 @@ class ImportLojaIntegradaProducts extends Command
                 }
 
                 $productName = $product['nome'];
-                $productDesc = $product['descricao_curta'] ?? '';
+                $productDesc = $product['descricao_curta'] ?? null;
+
+                if (empty($productDesc)) {
+                    $productDesc = "Conheça o produto: {$productName}. Ideal para quem busca qualidade e performance.";
+                }
 
                 // Buscar imagem
                 $imageUrl = null;
@@ -114,6 +118,14 @@ class ImportLojaIntegradaProducts extends Command
                     continue;
                 }
 
+                // Definir horários de agendamento
+                $scheduleAt = match ($imported) {
+                    0 => now()->setTime(10, 0),
+                    1 => now()->setTime(12, 0),
+                    2 => now()->setTime(14, 0),
+                    default => now()->addHours($imported * 2),
+                };
+
                 // Salvar no banco
                 ScheduledPost::create([
                     'product_id' => $productId,
@@ -122,6 +134,7 @@ class ImportLojaIntegradaProducts extends Command
                     'image_url' => $imageUrl,
                     'caption' => $caption,
                     'price' => $productPrice,
+                    'scheduled_at' => $scheduleAt,
                     'posted' => false,
                 ]);
 
